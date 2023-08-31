@@ -1,0 +1,99 @@
+.product-form-container {
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+
+  .input-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+
+    mat-form-field {
+      width: 100%;
+
+      .mat-form-field-label {
+        color: #555;
+        font-weight: bold;
+      }
+
+      input {
+        border: none;
+        border-bottom: 2px solid #007bff;
+        padding: 8px;
+        font-size: 14px;
+        background-color: transparent;
+        transition: border-color 0.3s ease;
+
+        &:focus {
+          outline: none;
+          border-color: #0056b3;
+        }
+      }
+
+      mat-datepicker-toggle {
+        border: none;
+        background-color: transparent;
+        color: #555;
+      }
+    }
+  }
+
+  .button-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f4f4f4;
+    color: #555;
+    font-weight: bold;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+}
+
+.mensagem-erro {
+  background-color: #f44336; /* Cor de fundo vermelha */
+  color: white; /* Cor do texto branco */
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+

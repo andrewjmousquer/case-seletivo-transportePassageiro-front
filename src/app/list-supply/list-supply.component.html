@@ -1,0 +1,50 @@
+<div class="product-management-container" fxLayout="column" fxLayoutGap="16px">
+  <mat-form-field class="custom-form-field">
+    <mat-select class="custom-select" [(ngModel)]="filtroVeiculo" placeholder="Filtrar por Veículo">
+      <mat-option [value]="" (click)="limparFiltro()">Mostrar Tudo</mat-option>
+      <mat-option *ngFor="let veiculo of veiculosUnicos" [value]="veiculo">
+        {{ veiculo }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="primary" class="filter-button" (click)="aplicarFiltro()">Filtrar</button>
+
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Hora</th>
+          <th>Placa do Veículo</th>
+          <th>Quilometragem</th>
+          <th>Valor Total</th>
+          <th>Excluir</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let abastecimento of abastecimentosFiltrados">
+          <td>{{ abastecimento.dataHora | date:'dd/MM/yyyy' }}</td>
+          <td>{{ abastecimento.dataHora | date:'HH:mm' }}</td>
+          <td>{{ abastecimento.placaVeiculo }}</td>
+          <td>{{ abastecimento.quilometragem }} km</td>
+          <td>{{ abastecimento.valorTotal | currency:'BRL':'symbol':'1.2-2' }}</td>
+
+          <td>
+            <button mat-icon-button color="warn" (click)="exibirModalDeConfirmacao(abastecimento)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="modal" *ngIf="exibirModalConfirmacao">
+    <div class="modal-content">
+      <p>Tem certeza que deseja excluir este abastecimento?</p>
+      <button mat-raised-button color="warn" (click)="confirmarExclusao()">Sim</button>
+      <button mat-raised-button color="primary" (click)="cancelarExclusao()">Não</button>
+    </div>
+  </div>
+
+</div>

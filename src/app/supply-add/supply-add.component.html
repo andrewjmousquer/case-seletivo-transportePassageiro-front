@@ -1,0 +1,62 @@
+<div class="product-form-container" fxLayout="column" fxLayoutGap="16px">
+  <div class="input-row" fxLayout="column" fxLayoutGap="24px">
+    <mat-form-field>
+      <label class="input-label">Data</label>
+      <input matInput [matDatepicker]="picker" placeholder="Data" [value]="dataSelecionada | date: 'dd/MM/yyyy'" (ngModelChange)="atualizarDataSelecionadaString()">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <label class="input-label">Hora</label>
+      <input matInput type="time" [(ngModel)]="horaSelecionada" step="60" placeholder="Selecione a hora">
+    </mat-form-field>
+
+    <mat-form-field>
+      <label class="input-label">Placa do Veículo</label>
+      <input matInput placeholder="Placa do Veículo" [(ngModel)]="novoAbastecimento.placaVeiculo">
+    </mat-form-field>
+
+    <mat-form-field>
+      <label class="input-label">Quilometragem</label>
+      <input matInput [(ngModel)]="novoAbastecimento.quilometragem">
+    </mat-form-field>
+
+    <mat-form-field>
+      <label class="input-label">Valor Total</label>
+      <input matInput placeholder="Valor Total" [(ngModel)]="novoAbastecimento.valorTotal">
+    </mat-form-field>
+  </div>
+  <div class="button-row" fxLayout="row" fxLayoutAlign="end">
+    <button mat-raised-button class="custom-button" (click)="adicionarAbastecimento()">
+      Adicionar Abastecimento
+    </button>
+  </div>
+</div>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Hora</th>
+        <th>Placa do Veículo</th>
+        <th>Quilometragem</th>
+        <th>Valor Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let abastecimento of abastecimentos">
+        <td>{{ abastecimento.dataHora | date:'dd/MM/yyyy' }}</td>
+        <td>{{ abastecimento.dataHora | date:'HH:mm' }}</td>
+        <td>{{ abastecimento.placaVeiculo }}</td>
+        <td>{{ abastecimento.quilometragem }} km</td>
+        <td>{{ abastecimento.valorTotal | currency:'BRL':'symbol':'1.2-2' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="erroAdicionarAbastecimento" class="mensagem-erro">
+    {{ erroAdicionarAbastecimento }}
+  </div>
+
+</div>
